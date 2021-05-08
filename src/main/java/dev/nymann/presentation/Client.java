@@ -1,14 +1,14 @@
 package dev.nymann.presentation;
 
+import dev.nymann.domain.ISensorService;
 import dev.nymann.domain.SensorFactory;
 import dev.nymann.domain.SensorService;
-import dev.nymann.sensor.TemperatureSensorAdapter;
 
 import java.util.Scanner;
 
 public class Client {
     Scanner scanner;
-    SensorService sensorService;
+    ISensorService sensorService;
 
     public Client() {
         sensorService = new SensorService();
