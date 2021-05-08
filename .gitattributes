@@ -1,0 +1,1 @@
+lib/st4-scfs-sensors-1.0.0.jar filter=lfs diff=lfs merge=lfs -text
