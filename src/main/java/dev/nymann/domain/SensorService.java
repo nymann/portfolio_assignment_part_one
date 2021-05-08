@@ -4,6 +4,7 @@ import dev.nymann.sensor.CO2SensorAdapter;
 import dev.nymann.sensor.TemperatureSensorAdapter;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class SensorService {
     HashMap<String, ISensor> sensors;
@@ -31,6 +32,14 @@ public class SensorService {
     public Double getSensorValue(String name) {
         ISensor sensor = sensors.get(name);
         return sensor.getValue();
+    }
+
+    public HashMap<String, Double> getSensors() {
+        HashMap<String, Double> sensor_map = new HashMap<>();
+        for (ISensor sensor: sensors.values()) {
+           sensor_map.put(sensor.getName(), sensor.getValue());
+        }
+        return sensor_map;
     }
 
     public void removeSensor(String name) {

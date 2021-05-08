@@ -1,5 +1,6 @@
 package dev.nymann.presentation;
 
+import dev.nymann.domain.ISensor;
 import dev.nymann.domain.SensorService;
 
 import java.util.Scanner;
@@ -45,6 +46,7 @@ public class Client {
             }
             case "read" -> printSensorValue(name);
             case "remove" -> sensorService.removeSensor(name);
+            case "list" -> printSensors();
             default -> help();
         }
     }
@@ -65,7 +67,15 @@ public class Client {
                 'add_temp <name>', adds a Temperature sensor with the given name.
                 'read <name>', read the value of a previously added sensor.
                 'remove <name>', stops the given sensor.
+                'list all', prints all sensor names along with their values.
                 """);
+    }
+
+    private void printSensors() {
+        var sensors = sensorService.getSensors();
+        for (var name : sensors.keySet()) {
+            printMessage(name + ": " + sensors.get(name));
+        }
     }
 
     private void printMessage(String message) {
