@@ -1,34 +1,21 @@
 package dev.nymann.domain;
 
-import dev.nymann.sensor.CO2SensorAdapter;
-import dev.nymann.sensor.TemperatureSensorAdapter;
-
 import java.util.HashMap;
 
-public class SensorService {
-    HashMap<String, ISensor> sensors;
+public class SensorService implements ISensorService {
+    // todo make it another class instead of Hashmap.
+    HashMap<String, Sensor> sensors;
 
     public SensorService() {
         sensors = new HashMap<>();
     }
 
-    public void addTemperatureSensor(String name) {
-        var sensor = new TemperatureSensorAdapter(name);
+    public void add(Sensor sensor) {
         sensor.start();
-        addSensor(name, sensor);
+        sensors.put(sensor.getName(), sensor);
     }
 
-    public void addCO2Sensor(String name) {
-        var sensor = new CO2SensorAdapter(name);
-        sensor.start();
-        addSensor(name, sensor);
-    }
-
-    private void addSensor(String name, ISensor sensor) {
-        sensors.put(name, sensor);
-    }
-
-    public Double getSensorValue(String name) {
+    public Double read(String name) {
         ISensor sensor = sensors.get(name);
         return sensor.getValue();
     }
@@ -41,16 +28,12 @@ public class SensorService {
         return sensor_map;
     }
 
-    public void removeSensor(String name) {
-        Object sensor = sensors.get(name);
+    public void remove(String name) {
+        Sensor sensor = sensors.get(name);
         if (sensor == null) {
             return;
         }
-        if (sensor instanceof CO2SensorAdapter) {
-            ((CO2SensorAdapter) sensor).stop();
-        } else {
-            ((TemperatureSensorAdapter) sensor).stop();
-        }
+        sensor.stop();
         sensors.remove(name);
     }
 

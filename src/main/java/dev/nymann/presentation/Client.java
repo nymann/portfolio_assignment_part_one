@@ -1,6 +1,8 @@
 package dev.nymann.presentation;
 
+import dev.nymann.domain.SensorFactory;
 import dev.nymann.domain.SensorService;
+import dev.nymann.sensor.TemperatureSensorAdapter;
 
 import java.util.Scanner;
 
@@ -35,23 +37,19 @@ public class Client {
 
     private void ProcessCommand(String command, String name) {
         switch (command) {
-            case "add_co2" -> {
-                sensorService.addCO2Sensor(name);
-                printMessage("Added CO2 sensor with name: 'CO2'");
-            }
-            case "add_temp" -> {
-                sensorService.addTemperatureSensor(name);
-                printMessage(String.format("Added temperature sensor with name: '%s'", name));
+            case "add_temp", "add_co2" -> {
+                var sensor = new SensorFactory().makeSensorFromCommand(command, name);
+                sensorService.add(sensor);
             }
             case "read" -> printSensorValue(name);
-            case "remove" -> sensorService.removeSensor(name);
+            case "remove" -> sensorService.remove(name);
             case "list" -> printSensors();
             default -> help();
         }
     }
 
     private void printSensorValue(String name) {
-        var temp = sensorService.getSensorValue(name);
+        var temp = sensorService.read(name);
         if (temp == null) {
             printMessage("A sensor with that name does not exist.");
             return;
