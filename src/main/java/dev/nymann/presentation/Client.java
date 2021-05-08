@@ -1,9 +1,11 @@
 package dev.nymann.presentation;
 
 import dev.nymann.domain.ISensorService;
+import dev.nymann.domain.Sensor;
 import dev.nymann.domain.SensorFactory;
 import dev.nymann.domain.SensorService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
@@ -69,9 +71,9 @@ public class Client {
     }
 
     private void printSensors() {
-        var sensors = sensorService.getSensors();
-        for (var name : sensors.keySet()) {
-            printMessage(name + ": " + sensors.get(name));
+        List<Sensor> sensors = sensorService.getSensors();
+        for (Sensor sensor : sensors) {
+            printMessage(sensor.getName() + ": " + sensor.getValue());
         }
     }
 
