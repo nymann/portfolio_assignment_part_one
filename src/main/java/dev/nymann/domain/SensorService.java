@@ -2,7 +2,6 @@ package dev.nymann.domain;
 
 import dev.nymann.sensor.CO2SensorAdapter;
 import dev.nymann.sensor.TemperatureSensorAdapter;
-import dk.sdu.mmmi.st4.scfs.sensors.TemperatureSensor;
 
 import java.util.HashMap;
 
@@ -35,11 +34,14 @@ public class SensorService {
     }
 
     public void removeSensor(String name) {
-        ISensor sensor = sensors.get(name);
+        Object sensor = sensors.get(name);
+        if (sensor == null) {
+            return;
+        }
         if (sensor instanceof CO2SensorAdapter) {
             ((CO2SensorAdapter) sensor).stop();
         } else {
-            ((TemperatureSensor) sensor).stop();
+            ((TemperatureSensorAdapter) sensor).stop();
         }
         sensors.remove(name);
     }
