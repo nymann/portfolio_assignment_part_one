@@ -2,17 +2,14 @@ package dev.nymann.presentation;
 
 import dev.nymann.domain.SensorService;
 
-import java.io.Console;
+import java.util.Scanner;
 
 public class Client {
-    Console console;
+    Scanner scanner;
     SensorService sensorService;
     public Client() throws Exception {
         sensorService = new SensorService();
-        console = System.console();
-        if(console == null) {
-            throw new Exception("No console available");
-        }
+        scanner = new Scanner(System.in);
         while(true) {
             loop();
         }
@@ -24,13 +21,11 @@ public class Client {
     }
 
     private String readInput() {
-       return console.readLine();
+       return scanner.nextLine();
     }
 
     private void getCommand(String userInput) {
         switch (userInput) {
-            case "help":
-                help();
             case "add CO2 sensor":
                 sensorService.addCO2Sensor("CO2");
                 printMessage("Added CO2 sensor with name: 'CO2'");

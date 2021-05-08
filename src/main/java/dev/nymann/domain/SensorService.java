@@ -10,6 +10,7 @@ public class SensorService {
     HashMap<String, ISensor> sensors;
 
     public SensorService() {
+        sensors = new HashMap<>();
     }
 
     public void addTemperatureSensor(String name) {
