@@ -1,7 +1,7 @@
 package dev.nymann.domain;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 public class SensorService implements ISensorService {
     // todo make it another class instead of Hashmap.
@@ -21,8 +21,8 @@ public class SensorService implements ISensorService {
         return sensor.getValue();
     }
 
-    public List<Sensor> getSensors() {
-        return (List<Sensor>) this.sensors.values();
+    public Collection<Sensor> getSensors() {
+        return this.sensors.values();
     }
 
     public void remove(String name) {

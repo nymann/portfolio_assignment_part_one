@@ -5,6 +5,7 @@ import dev.nymann.domain.Sensor;
 import dev.nymann.domain.SensorFactory;
 import dev.nymann.domain.SensorService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -71,7 +72,7 @@ public class Client {
     }
 
     private void printSensors() {
-        List<Sensor> sensors = sensorService.getSensors();
+        Collection<Sensor> sensors = sensorService.getSensors();
         for (Sensor sensor : sensors) {
             printMessage(sensor.getName() + ": " + sensor.getValue());
         }
