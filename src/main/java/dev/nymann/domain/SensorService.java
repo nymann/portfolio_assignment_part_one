@@ -36,9 +36,9 @@ public class SensorService {
 
     public void removeSensor(String name) {
         ISensor sensor = sensors.get(name);
-        try {
+        if (sensor instanceof CO2SensorAdapter) {
             ((CO2SensorAdapter) sensor).stop();
-        } catch (Exception e) {
+        } else {
             ((TemperatureSensor) sensor).stop();
         }
         sensors.remove(name);
