@@ -1,6 +1,5 @@
 package dev.nymann.presentation;
 
-import dev.nymann.domain.ISensor;
 import dev.nymann.domain.SensorService;
 
 import java.util.Scanner;
