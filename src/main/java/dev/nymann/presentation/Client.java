@@ -15,32 +15,40 @@ public class Client {
     public Client() {
         sensorService = new SensorService();
         scanner = new Scanner(System.in);
-        help();
+        System.out.println(help());
         while (true) {
-            loop();
+            ICommand command = getCommandFromUserInput();
+            String response = getCommandResponseOrErrorMessage(command);
+            System.out.println(response);
         }
     }
 
-    public void loop() {
+    private ICommand getCommandFromUserInput() {
         var userInput = readInput();
+        return new CommandFactory().makeFromString(userInput, sensorService);
+    }
+
+    private String getCommandResponseOrErrorMessage(ICommand command) {
         try {
-            ICommand command = new CommandFactory().makeFromString(userInput, sensorService);
-            if (command == null) {
-                help();
-                return;
-            }
-            System.out.println(command.execute());
+            return executeCommandOrDisplayHelp(command);
         } catch (CommandExecutionException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
+    }
+
+    private String executeCommandOrDisplayHelp(ICommand command) throws CommandExecutionException {
+        if (command == null) {
+            return help();
+        }
+        return command.execute();
     }
 
     private String readInput() {
         return scanner.nextLine();
     }
 
-    private void help() {
-        System.out.println("""
+    private String help() {
+        return ("""
                 'help', prints this message.
                 'add co2 <name>', adds a CO2 sensor with the given name.
                 'add temp <name>', adds a Temperature sensor with the given name.
