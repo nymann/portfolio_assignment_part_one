@@ -1,6 +1,6 @@
 package dev.nymann.sensor;
 
-import dev.nymann.domain.Sensor;
+import dev.nymann.domain.sensors.Sensor;
 import dk.sdu.mmmi.st4.scfs.sensors.TemperatureSensor;
 
 public class TemperatureSensorAdapter extends Sensor {
@@ -12,18 +12,22 @@ public class TemperatureSensorAdapter extends Sensor {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public Double getValue() {
         return (Double) temperatureSensor.value();
     }
 
+    @Override
     public void start() {
         temperatureSensor.start();
     }
 
+    @Override
     public void stop() {
         temperatureSensor.stop();
     }

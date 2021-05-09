@@ -1,4 +1,4 @@
-package dev.nymann.domain;
+package dev.nymann.domain.sensors;
 
 public abstract class Sensor implements ISensor {
     public abstract void start();

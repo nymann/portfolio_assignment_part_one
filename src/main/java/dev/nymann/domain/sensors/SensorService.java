@@ -1,4 +1,6 @@
-package dev.nymann.domain;
+package dev.nymann.domain.sensors;
+
+import dev.nymann.domain.exceptions.SensorNotFoundException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,27 +13,30 @@ public class SensorService implements ISensorService {
         this.sensors = new HashMap<>();
     }
 
+    @Override
     public void add(Sensor sensor) {
         sensor.start();
         this.sensors.put(sensor.getName(), sensor);
     }
 
+    @Override
     public Double read(String name) {
         ISensor sensor = this.sensors.get(name);
         return sensor.getValue();
     }
 
+    @Override
     public Collection<Sensor> getSensors() {
         return this.sensors.values();
     }
 
-    public void remove(String name) {
+    @Override
+    public void remove(String name) throws SensorNotFoundException {
         Sensor sensor = this.sensors.get(name);
         if (sensor == null) {
-            return;
+            throw new SensorNotFoundException(name);
         }
         sensor.stop();
         this.sensors.remove(name);
     }
-
 }

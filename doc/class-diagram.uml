@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/knj/code/github.com/nymann/softwareteknologi_cps/portfolio_assignment_part_one/src</OriginalElement>
+  <nodes>
+    <node x="203.0" y="137.0">dev.nymann.domain.sensors.Sensor</node>
+    <node x="1221.0" y="1045.0">dev.nymann.domain.sensors.ISensorFactory</node>
+    <node x="284.0" y="1045.0">dev.nymann.presentation.Client</node>
+    <node x="0.0" y="861.0">dev.nymann.domain.commands.RemoveSensorCommand</node>
+    <node x="353.0" y="1442.0">dev.nymann.Main</node>
+    <node x="0.0" y="300.0">dev.nymann.sensor.CO2SensorAdapter</node>
+    <node x="746.25" y="535.0">dev.nymann.domain.commands.ICommand</node>
+    <node x="1221.0" y="1157.0">dev.nymann.domain.sensors.SensorFactory</node>
+    <node x="253.0" y="300.0">dev.nymann.sensor.TemperatureSensorAdapter</node>
+    <node x="866.0" y="861.0">dev.nymann.domain.commands.ListSensorsCommand</node>
+    <node x="779.0" y="1045.0">dev.nymann.domain.commands.ICommandFactory</node>
+    <node x="0.0" y="1233.0">dev.nymann.domain.sensors.SensorService</node>
+    <node x="196.0" y="0.0">dev.nymann.domain.sensors.ISensor</node>
+    <node x="746.25" y="672.0">dev.nymann.domain.commands.Command</node>
+    <node x="0.0" y="1045.0">dev.nymann.domain.sensors.ISensorService</node>
+    <node x="1286.0" y="861.0">dev.nymann.domain.commands.AddSensorCommand</node>
+    <node x="11.5" y="1554.0">dev.nymann.domain.exceptions.SensorNotFoundException</node>
+    <node x="0.0" y="1442.0">dev.nymann.domain.exceptions.CommandExecutionException</node>
+    <node x="443.0" y="861.0">dev.nymann.domain.commands.ReadSensorCommand</node>
+    <node x="779.0" y="1157.0">dev.nymann.domain.commands.CommandFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="dev.nymann.domain.commands.AddSensorCommand" target="dev.nymann.domain.commands.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-69.5" />
+      <point x="1484.0" y="836.0" />
+      <point x="855.25" y="836.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="dev.nymann.domain.exceptions.SensorNotFoundException" target="dev.nymann.domain.exceptions.CommandExecutionException" relationship="GENERALIZATION">
+      <point x="0.0" y="-31.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="dev.nymann.domain.commands.CommandFactory" target="dev.nymann.domain.commands.ICommandFactory" relationship="REALIZATION">
+      <point x="0.0" y="-44.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="dev.nymann.domain.sensors.SensorFactory" target="dev.nymann.domain.sensors.ISensorFactory" relationship="REALIZATION">
+      <point x="0.0" y="-44.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="dev.nymann.domain.commands.Command" target="dev.nymann.domain.commands.ICommand" relationship="REALIZATION">
+      <point x="0.0" y="-69.5" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="dev.nymann.domain.sensors.SensorService" target="dev.nymann.domain.sensors.ISensorService" relationship="REALIZATION">
+      <point x="0.0" y="-82.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="dev.nymann.domain.commands.RemoveSensorCommand" target="dev.nymann.domain.commands.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-69.5" />
+      <point x="211.5" y="836.0" />
+      <point x="855.25" y="836.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="dev.nymann.domain.commands.ReadSensorCommand" target="dev.nymann.domain.commands.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-69.5" />
+      <point x="644.5" y="836.0" />
+      <point x="855.25" y="836.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="dev.nymann.domain.commands.ListSensorsCommand" target="dev.nymann.domain.commands.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-69.5" />
+      <point x="1066.0" y="836.0" />
+      <point x="855.25" y="836.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="dev.nymann.sensor.CO2SensorAdapter" target="dev.nymann.domain.sensors.Sensor" relationship="GENERALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="116.5" y="275.0" />
+      <point x="264.0" y="275.0" />
+      <point x="0.0" y="56.5" />
+    </edge>
+    <edge source="dev.nymann.domain.sensors.Sensor" target="dev.nymann.domain.sensors.ISensor" relationship="REALIZATION">
+      <point x="0.0" y="-56.5" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="dev.nymann.sensor.TemperatureSensorAdapter" target="dev.nymann.domain.sensors.Sensor" relationship="GENERALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="411.5" y="275.0" />
+      <point x="264.0" y="275.0" />
+      <point x="0.0" y="56.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7732273838630807" showDependencies="false" x="841.0" y="820.5272727272727" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
