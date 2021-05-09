@@ -15,13 +15,24 @@ public class Client {
     public Client() {
         sensorService = new SensorService();
         scanner = new Scanner(System.in);
-        System.out.println(help());
+        printWelcome();
         while (true) {
+            printPrompt();
             ICommand command = getCommandFromUserInput();
             String response = getCommandResponseOrErrorMessage(command);
-            System.out.println(response);
+            printMessage(response);
         }
     }
+
+    private void printWelcome() {
+        printMessage("SNUS not UNIX Sensors");
+        printMessage("Type \"help\" for help.");
+    }
+
+    private void printPrompt() {
+        printMessage("$ ", false);
+    }
+
 
     private ICommand getCommandFromUserInput() {
         var userInput = readInput();
@@ -41,6 +52,18 @@ public class Client {
             return help();
         }
         return command.execute();
+    }
+
+    private void printMessage(String message) {
+        printMessage(message, true);
+    }
+
+    private void printMessage(String message, boolean addNewLine) {
+        if (addNewLine) {
+            System.out.println(message);
+            return;
+        }
+        System.out.print(message);
     }
 
     private String readInput() {
