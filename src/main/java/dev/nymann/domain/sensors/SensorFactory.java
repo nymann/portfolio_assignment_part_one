@@ -1,9 +1,9 @@
-package dev.nymann.domain;
+package dev.nymann.domain.sensors;
 
 import dev.nymann.sensor.CO2SensorAdapter;
 import dev.nymann.sensor.TemperatureSensorAdapter;
 
-public class SensorFactory {
+public class SensorFactory implements ISensorFactory {
     public Sensor makeSensorFromCommand(String command, String name) {
         switch (command) {
             case "add_co2" -> {

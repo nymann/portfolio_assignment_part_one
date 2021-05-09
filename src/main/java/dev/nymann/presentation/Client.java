@@ -1,12 +1,11 @@
 package dev.nymann.presentation;
 
-import dev.nymann.domain.ISensorService;
-import dev.nymann.domain.Sensor;
-import dev.nymann.domain.SensorFactory;
-import dev.nymann.domain.SensorService;
+import dev.nymann.domain.commands.CommandFactory;
+import dev.nymann.domain.commands.ICommand;
+import dev.nymann.domain.exceptions.CommandExecutionException;
+import dev.nymann.domain.sensors.ISensorService;
+import dev.nymann.domain.sensors.SensorService;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Scanner;
 
 public class Client {
@@ -24,61 +23,30 @@ public class Client {
 
     public void loop() {
         var userInput = readInput();
-        var split = userInput.split(" ");
-        if (split.length != 2) {
-            help();
-            return;
+        try {
+            ICommand command = new CommandFactory().makeFromString(userInput, sensorService);
+            if (command == null) {
+                help();
+                return;
+            }
+            System.out.println(command.execute());
+        } catch (CommandExecutionException e) {
+            System.out.println(e.getMessage());
         }
-        String command = split[0];
-        String name = split[1];
-        ProcessCommand(command, name);
     }
 
     private String readInput() {
         return scanner.nextLine();
     }
 
-    private void ProcessCommand(String command, String name) {
-        switch (command) {
-            case "add_temp", "add_co2" -> {
-                var sensor = new SensorFactory().makeSensorFromCommand(command, name);
-                sensorService.add(sensor);
-            }
-            case "read" -> printSensorValue(name);
-            case "remove" -> sensorService.remove(name);
-            case "list" -> printSensors();
-            default -> help();
-        }
-    }
-
-    private void printSensorValue(String name) {
-        var temp = sensorService.read(name);
-        if (temp == null) {
-            printMessage("A sensor with that name does not exist.");
-            return;
-        }
-        printMessage(String.format("%s: %f", name, temp));
-    }
-
     private void help() {
-        printMessage("""
+        System.out.println("""
                 'help', prints this message.
-                'add_co2 <name>', adds a CO2 sensor with the given name.
-                'add_temp <name>', adds a Temperature sensor with the given name.
+                'add co2 <name>', adds a CO2 sensor with the given name.
+                'add temp <name>', adds a Temperature sensor with the given name.
                 'read <name>', read the value of a previously added sensor.
                 'remove <name>', stops the given sensor.
-                'list all', prints all sensor names along with their values.
+                'list', prints all sensor names along with their values.
                 """);
-    }
-
-    private void printSensors() {
-        Collection<Sensor> sensors = sensorService.getSensors();
-        for (Sensor sensor : sensors) {
-            printMessage(sensor.getName() + ": " + sensor.getValue());
-        }
-    }
-
-    private void printMessage(String message) {
-        System.out.println(message);
     }
 }

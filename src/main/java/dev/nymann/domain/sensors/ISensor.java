@@ -1,4 +1,4 @@
-package dev.nymann.domain;
+package dev.nymann.domain.sensors;
 
 public interface ISensor {
     public String getName();
