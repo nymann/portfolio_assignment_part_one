@@ -1,0 +1,59 @@
+@startuml
+skinparam roundCorner 10
+skinparam shadowing false
+skinparam classFontName Lato
+skinparam classFontSize 16
+skinparam defaultFontName Source Code Pro
+skinparam defaultFontSize 14
+skinparam ClassAttributeFontStyle normal
+skinparam ClassBackgroundColor white
+skinparam ClassBorderColor black
+skinparam ClassBorderThickness 1
+skinparam ArrowColor black
+skinparam linetype polyline
+
+interface dev.nymann.domain.commands.ICommandFactory {
++ ICommand makeFromString(String,ISensorService)
+}
+class dev.nymann.domain.commands.AddSensorCommand {
+- ISensorService sensorService
+- ISensorFactory sensorFactory
++ String execute()
++ void validateArguments()
+}
+class dev.nymann.domain.commands.CommandFactory {
++ ICommand makeFromString(String,ISensorService)
+}
+class dev.nymann.domain.commands.ReadSensorCommand {
+- ISensorService sensorService
++ String execute()
++ void validateArguments()
+}
+interface dev.nymann.domain.commands.ICommand {
+~ String execute()
+~ void validateArguments()
+}
+class dev.nymann.domain.commands.ListSensorsCommand {
+- ISensorService sensorService
++ String execute()
++ void validateArguments()
+}
+abstract class dev.nymann.domain.commands.Command {
+# List<String> args
++ {abstract}String execute()
++ {abstract}void validateArguments()
+}
+class dev.nymann.domain.commands.RemoveSensorCommand {
+- ISensorService sensorService
++ String execute()
++ void validateArguments()
+}
+
+
+dev.nymann.domain.commands.Command <|-- dev.nymann.domain.commands.AddSensorCommand
+dev.nymann.domain.commands.ICommandFactory <|.. dev.nymann.domain.commands.CommandFactory
+dev.nymann.domain.commands.Command <|-- dev.nymann.domain.commands.ReadSensorCommand
+dev.nymann.domain.commands.Command <|-- dev.nymann.domain.commands.ListSensorsCommand
+dev.nymann.domain.commands.ICommand <|.. dev.nymann.domain.commands.Command
+dev.nymann.domain.commands.Command <|-- dev.nymann.domain.commands.RemoveSensorCommand
+@enduml

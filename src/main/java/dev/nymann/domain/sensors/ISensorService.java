@@ -1,6 +1,7 @@
 package dev.nymann.domain.sensors;
 
 import dev.nymann.domain.exceptions.SensorNotFoundException;
+import dev.nymann.sensor.Sensor;
 
 import java.util.Collection;
 

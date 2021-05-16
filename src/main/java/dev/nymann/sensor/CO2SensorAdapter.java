@@ -1,6 +1,5 @@
 package dev.nymann.sensor;
 
-import dev.nymann.domain.sensors.Sensor;
 import dk.sdu.mmmi.st4.scfs.sensors.CO2Sensor;
 
 public class CO2SensorAdapter extends Sensor {

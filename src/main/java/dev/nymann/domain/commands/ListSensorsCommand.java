@@ -1,9 +1,7 @@
 package dev.nymann.domain.commands;
 
 import dev.nymann.domain.sensors.ISensorService;
-import dev.nymann.domain.sensors.Sensor;
-import dev.nymann.sensor.CO2SensorAdapter;
-import dev.nymann.sensor.TemperatureSensorAdapter;
+import dev.nymann.sensor.Sensor;
 
 import java.util.Collection;
 import java.util.List;
