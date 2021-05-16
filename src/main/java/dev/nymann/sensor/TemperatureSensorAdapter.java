@@ -1,6 +1,5 @@
 package dev.nymann.sensor;
 
-import dev.nymann.domain.sensors.Sensor;
 import dk.sdu.mmmi.st4.scfs.sensors.TemperatureSensor;
 
 public class TemperatureSensorAdapter extends Sensor {

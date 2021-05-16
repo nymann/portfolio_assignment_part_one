@@ -1,4 +1,5 @@
-# Portfolio assignment (P1)
+# SNUS not UNIX Sensors
+### Portfolio assignment part 1
 
 ### Install provided jar library
 ```shell
@@ -12,29 +13,31 @@ mvn install:install-file \
 
 ### Structure
 ```
-domain
-├── commands
-│   ├── AddSensorCommand.java
-│   ├── CommandFactory.java
-│   ├── Command.java
-│   ├── ICommandFactory.java
-│   ├── ICommand.java
-│   ├── ListSensorsCommand.java
-│   ├── ReadSensorCommand.java
-│   └── RemoveSensorCommand.java
-├── exceptions
-│   ├── CommandExecutionException.java
-│   └── SensorNotFoundException.java
-└── sensors
-├── ISensorFactory.java
-├── ISensor.java
-├── ISensorService.java
-├── SensorFactory.java
-├── Sensor.java
-└── SensorService.java
-presentation
-└── Client.java
-sensor
-├── CO2SensorAdapter.java
-└── TemperatureSensorAdapter.java
+src/main/java/dev/nymann/
+├── domain
+│   ├── commands
+│   │   ├── AddSensorCommand.java
+│   │   ├── CommandFactory.java
+│   │   ├── Command.java
+│   │   ├── ICommandFactory.java
+│   │   ├── ICommand.java
+│   │   ├── ListSensorsCommand.java
+│   │   ├── ReadSensorCommand.java
+│   │   └── RemoveSensorCommand.java
+│   ├── exceptions
+│   │   ├── CommandExecutionException.java
+│   │   └── SensorNotFoundException.java
+│   └── sensors
+│       ├── ISensorFactory.java
+│       ├── ISensorService.java
+│       ├── SensorFactory.java
+│       └── SensorService.java
+├── Main.java
+├── presentation
+│   └── Client.java
+└── sensor
+    ├── CO2SensorAdapter.java
+    ├── ISensor.java
+    ├── Sensor.java
+    └── TemperatureSensorAdapter.java
 ```

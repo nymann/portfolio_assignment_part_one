@@ -1,0 +1,23 @@
+@startuml
+skinparam roundCorner 10
+skinparam shadowing false
+skinparam classFontName Lato
+skinparam classFontSize 16
+skinparam defaultFontName Source Code Pro
+skinparam defaultFontSize 14
+skinparam ClassAttributeFontStyle normal
+skinparam ClassBackgroundColor white
+skinparam ClassBorderColor black
+skinparam ClassBorderThickness 1
+skinparam ArrowColor black
+skinparam linetype polyline
+
+class dev.nymann.domain.exceptions.SensorNotFoundException {
+}
+class dev.nymann.domain.exceptions.CommandExecutionException {
+}
+
+
+dev.nymann.domain.exceptions.CommandExecutionException <|-- dev.nymann.domain.exceptions.SensorNotFoundException
+dev.nymann.domain.exceptions.Exception <|-- dev.nymann.domain.exceptions.CommandExecutionException
+@enduml

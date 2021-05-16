@@ -2,7 +2,6 @@ package dev.nymann.domain.commands;
 
 
 import dev.nymann.domain.exceptions.CommandExecutionException;
-import dev.nymann.domain.exceptions.SensorNotFoundException;
 import dev.nymann.domain.sensors.ISensorService;
 
 import java.util.List;

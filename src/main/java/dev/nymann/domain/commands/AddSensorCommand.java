@@ -1,19 +1,21 @@
 package dev.nymann.domain.commands;
 
+import dev.nymann.domain.sensors.ISensorFactory;
 import dev.nymann.domain.sensors.ISensorService;
-import dev.nymann.domain.sensors.Sensor;
-import dev.nymann.sensor.CO2SensorAdapter;
-import dev.nymann.sensor.TemperatureSensorAdapter;
+import dev.nymann.domain.sensors.SensorFactory;
+import dev.nymann.sensor.Sensor;
 
 import java.util.List;
 
 public class AddSensorCommand extends Command {
 
     private final ISensorService sensorService;
+    private final ISensorFactory sensorFactory;
 
     public AddSensorCommand(List<String> args, ISensorService sensorService) {
         super(args);
         this.sensorService = sensorService;
+        this.sensorFactory = new SensorFactory();
     }
 
     @Override
@@ -22,15 +24,9 @@ public class AddSensorCommand extends Command {
         String type = args.get(0);
         String name = args.get(1);
 
-        String upperCaseType = type.toUpperCase();
-
-        Sensor sensor = switch (upperCaseType) {
-            case "TEMP" -> new TemperatureSensorAdapter(name);
-            case "CO2" -> new CO2SensorAdapter(name);
-            default -> throw new IllegalStateException("Invalid sensor type: " + type);
-        };
+        Sensor sensor = sensorFactory.makeSensorFromTypeName(type, name);
         sensorService.add(sensor);
-        return String.format("Added %s sensor device '%s'.", upperCaseType, name);
+        return String.format("Added %s sensor device '%s'.", type, name);
     }
 
     @Override

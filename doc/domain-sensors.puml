@@ -1,0 +1,37 @@
+@startuml
+skinparam roundCorner 10
+skinparam shadowing false
+skinparam classFontName Lato
+skinparam classFontSize 16
+skinparam defaultFontName Source Code Pro
+skinparam defaultFontSize 14
+skinparam ClassAttributeFontStyle normal
+skinparam ClassBackgroundColor white
+skinparam ClassBorderColor black
+skinparam ClassBorderThickness 1
+skinparam ArrowColor black
+skinparam linetype polyline
+interface dev.nymann.domain.sensors.ISensorService {
+~ void add(Sensor)
+~ Double read(String)
+~ void remove(String)
+~ Collection<Sensor> getSensors()
+}
+interface dev.nymann.domain.sensors.ISensorFactory {
++ Sensor makeSensorFromTypeName(String,String)
+}
+class dev.nymann.domain.sensors.SensorService {
+~ HashMap<String,Sensor> sensors
++ void add(Sensor)
++ Double read(String)
++ Collection<Sensor> getSensors()
++ void remove(String)
+}
+class dev.nymann.domain.sensors.SensorFactory {
++ Sensor makeSensorFromTypeName(String,String)
+}
+
+
+dev.nymann.domain.sensors.ISensorService <|.. dev.nymann.domain.sensors.SensorService
+dev.nymann.domain.sensors.ISensorFactory <|.. dev.nymann.domain.sensors.SensorFactory
+@enduml
